@@ -2,6 +2,9 @@ package br.unibh.loja.entidades;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+
+import java.util.Date;
+
 import org.junit.Test;
 
 public class Teste {
@@ -9,10 +12,19 @@ public class Teste {
 	@Test
 
 	public void testCreateObject() {
-	//Cidade c = new Cliente(1, "Marcos", "marcosmar", "123", "adm", "12345321", "31455556666",
-				//"marcosmar@hotmail.com", 1990-04-12, 2018-05-20);
-		//assertEquals(c.getId(), new Long(1));
-		//assertEquals(c.getNome(), "Marcos");
+
+		Cliente cl = new Cliente(1L, "Mariana", "marimozzer", "123", "adm", "12345321", "91919292", "abcd@efgh.com.br",
+				new Date(), new Date());
+		assertEquals(cl.getId(), new Long(3));
+		assertEquals(cl.getNome(), "Mariana");
+		assertEquals(cl.getLogin(), "marimozzer");
+		assertEquals(cl.getSenha(), "123");
+		assertEquals(cl.getPerfil(), "adm");
+		assertEquals(cl.getCpf(), "12345321");
+		assertEquals(cl.getTelefone(), "91919292");
+		assertEquals(cl.getEmail(), "abcd@efgh.com.br");
+		assertEquals(cl.getDataNascimento(), new Date());
+		assertEquals(cl.getDataCadastro(), new Date());
 
 	}
 
