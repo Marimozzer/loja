@@ -1,8 +1,18 @@
 package br.unibh.loja.entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+@Entity
+@Table(name = "tb_categoria")
 public class Categoria {
+	@Id
 	private Long id;
 	private String descricao;
+	@Version
+	private Long version;
 
 	public Categoria(Long id, String descricao) {
 		super();
@@ -28,6 +38,14 @@ public class Categoria {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	@Override

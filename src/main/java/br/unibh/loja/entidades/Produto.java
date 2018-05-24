@@ -2,13 +2,24 @@ package br.unibh.loja.entidades;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+@Entity
+@Table(name = "tb_produto")
 public class Produto {
+
+	@Id
 	private Long id;
 	private String nome;
 	private String descricao;
 	private Categoria categoria;
 	private BigDecimal preco;
 	private String fabricante;
+	@Version
+	private Long version;
 
 	public Produto(Long id, String nome, String descricao, Categoria categoria, BigDecimal preco, String fabricante) {
 		super();
@@ -70,6 +81,14 @@ public class Produto {
 
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	@Override
