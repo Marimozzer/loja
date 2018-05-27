@@ -2,6 +2,7 @@ package br.unibh.loja.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,17 +15,27 @@ import javax.persistence.Version;
 
 public class Cliente {
 	@Id
-	private Long id;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column
 	private String nome;
+	@Column
 	private String login;
+	@Column
 	private String senha;
+	@Column
 	private String perfil;
+	@Column
 	private String cpf;
+	@Column
 	private String telefone;
+	@Column
 	private String email;
+	@Column
 	private Date dataNascimento;
+	@Column
 	private Date dataCadastro;
+	@Column
 	@Version
 	private Long version;
 
