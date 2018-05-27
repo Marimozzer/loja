@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -14,7 +18,10 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	@Column(length = 100, nullable = false)
+	@Size(min = 3, max = 100)
+	@Pattern(regexp = "[A-zÀ-ú.´ ' ]*", message = "Caracteres permitidos: letras, espaços, ponto e aspas simples")
+	@NotEmpty
 	private String descricao;
 	@Column
 	@Version

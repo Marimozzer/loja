@@ -7,8 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_produto")
@@ -17,15 +23,27 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column
+	@Column(length = 100, nullable = false)
+	@NotEmpty
+	@Size(min = 3, max = 100)
+	@Pattern(regexp = "[A-zÀ-ú.´ ' ]*", message = "Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	private String nome;
-	@Column
+	@Column(length = 4000, nullable = false)
+	@NotEmpty
+	@Pattern(regexp = "[A-zÀ-ú.´ ' - / ]*", message = "Caracteres permitidos: letras, espaços, ponto, traço, barra e aspas simples")
 	private String descricao;
 	@Column
+	@NotEmpty
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
-	@Column
+	@Column(scale = 2, precision = 12, nullable = false)
+	@DecimalMin(value = "0", message = "Valor não pode ser menor que 0,00")
+	@NotEmpty
 	private BigDecimal preco;
-	@Column
+	@Column(length = 100, nullable = false)
+	@NotEmpty
+	@Size(min = 3, max = 100)
+	@Pattern(regexp = "[A-zÀ-ú.´ ' ]*", message = "Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	private String fabricante;
 	@Version
 	private Long version;
