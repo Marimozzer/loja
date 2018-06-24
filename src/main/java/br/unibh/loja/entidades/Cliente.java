@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -18,8 +21,10 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "tb_cliente")
 
+@Table(name = "tb_cliente", uniqueConstraints = { @UniqueConstraint(columnNames = { "cpf" }),
+		@UniqueConstraint(columnNames = { "login" }) })
+@NamedQueries({ @NamedQuery(name = "Cliente.findByName", query = "select o from Cliente o where o.nome like :nome") })
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
